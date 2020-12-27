@@ -1,0 +1,57 @@
+create table ageless18 as
+    > select info.user_id from info where age_range=1;
+
+create table age18to24 as
+    > select info.user_id from info where age_range=2;
+
+create table age25to29 as
+    > select info.user_id from info where age_range=3;
+
+create table age30to34 as
+    > select info.user_id from info where age_range=4;
+
+create table age35to39 as
+    > select info.user_id from info where age_range=5;
+
+create table age40to49 as
+    > select info.user_id from info where age_range=6;
+
+create table agemore50 as
+    > select info.user_id from info where (age_range=7 or age_range=8);
+
+
+insert overwrite table ageless18
+    > select user_id from ageless18 intersect select user_id from trueusers;
+
+insert overwrite table age18to24
+    > select user_id from age18to24 intersect select user_id from trueusers;
+
+insert overwrite table age25to29
+    > select user_id from age25to29 intersect select user_id from trueusers;
+
+insert overwrite table age30to34
+    > select user_id from age30to34 intersect select user_id from trueusers;
+
+insert overwrite table age35to39
+    > select user_id from age35to39 intersect select user_id from trueusers;
+
+insert overwrite table age40to49
+    > select user_id from age40to49 intersect select user_id from trueusers;
+
+insert overwrite table agemore50
+    > select user_id from agemore50 intersect select user_id from trueusers;
+
+
+select count(user_id) from ageless18;
+select count(user_id) from age18to24;
+select count(user_id) from age25to29;
+select count(user_id) from age30to34;
+select count(user_id) from age35to39;
+select count(user_id) from age40to49;
+select count(user_id) from agemore50;
+
+
+
+
+
+
